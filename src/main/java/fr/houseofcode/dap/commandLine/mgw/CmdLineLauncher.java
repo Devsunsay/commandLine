@@ -10,6 +10,11 @@ import org.apache.logging.log4j.Logger;
 public final class CmdLineLauncher {
 
     /** Singleton. */
+    //TODO mgw by Djer |Command Line| Ton singleton n'est pas utile, car il n'est pas utilsé  : Java lance juste "main(...)" et cette méthdoe n'utilie pas ton singleton.
+    //Ce n'est pas idéal de "tout codé dans du code static (comme main(...)" c'est pour cela que l'on a la classe "Serverutils".
+    //Si tu veux encore limiterle code il te faudrait une autre classe (par exemmple "Appli") qui contiendrait tout ton code qui est actuellement dans la méthdoe "main(...)" dans une méthode "start" (par exemple).
+    //la méthdoe Main de ton Launcher ne ferait que créer une instance de "Appli" puis exectuer la méthdoe "start()".
+    // On trovue souvent sur internet des "Launcher" avec cette méthdoe "start" dans le même fichier, ce qui est une bonne façon de faire, mais n'aide pas à comprendre le fonctionnement (surtout quand on débute).
     private static CmdLineLauncher instance;
 
     /**
@@ -30,9 +35,11 @@ public final class CmdLineLauncher {
         return instance;
     }
 
+    //TODO mgw by Djer |JavaDoc| Ce commentaire n'est pas juste.
     /**
     * @param args
     */
+    //TODO mgw by Djer |POO| Cette constante devrait être en début de classe. Ordre attendu : constantes, attributs, intialisateurs statics, constrcuteurs, méthodes métier, méthodes utilitaires (toString, hashCode,..), getter/setters
     private static final Logger LOG = LogManager.getLogger();
 
     /**
