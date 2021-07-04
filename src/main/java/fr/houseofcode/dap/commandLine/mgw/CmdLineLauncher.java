@@ -10,6 +10,11 @@ import org.apache.logging.log4j.Logger;
 public final class CmdLineLauncher {
 
     /** Singleton. */
+    //TODO MGW by Djer |Command Line| Ton singleton n'est pas utile, car il n'est pas utilsé  : Java lance juste "main(...)" et cette méthode n'utilise pas ton singleton.
+    //Ce n'est pas ié©al de "tout codé dans du code static (comme main(...)" c'est pour cela que l'on a la classe "Serverutils".
+    //Si tu veux encore limiter le code il te faudrait une autre classe (par exemmple "Appli") qui contiendrait tout ton code qui est actuellement dans la méthdoe "main(...)" dans une méthode "start" (par exemple).
+    //la méthdoe Main de ton Launcher ne ferait que créer une instance de "Appli" puis executer la méthdoe "start()".
+    // On trovue souvent sur internet des "Launcher" avec cette méthdoe "start" dans le même fichier, ce qui est une bonne façon de faire, mais n'aide pas à  comprendre le fonctionnement (surtout quand on débute).
     private static CmdLineLauncher instance;
 
     /**
@@ -30,9 +35,11 @@ public final class CmdLineLauncher {
         return instance;
     }
 
+    //TODO MGW by Djer |JavaDoc| Ce commentaire n'est pas juste.
     /**
     * @param args
     */
+    //TODO MGW by Djer |POO| Cette constante devrait être en début de classe. Ordre attendu : constantes, attributs, intialisateurs statics, constrcuteurs, méthodes métier, méthodes utilitaires (toString, hashCode,..), getter/setters
     private static final Logger LOG = LogManager.getLogger();
 
     /**
@@ -45,6 +52,7 @@ public final class CmdLineLauncher {
         ServerUtils su = new ServerUtils();
         LOG.debug("Debut du main avec comme arguments :  " + args);
 
+        //TODO MGW by Djer |Command Line| Pour Eviter un "ArrayOutOfBoundException" tu devrais vérifier qu'il y a le bon nombre de paramètres (+message d'erreur utilsiateur)
         String choixUserKey = args[0];
         String nbemails = su.getUnreadedMail(choixUserKey);
         String displayLabel = su.getLabels(choixUserKey);
@@ -53,29 +61,29 @@ public final class CmdLineLauncher {
         int n = Integer.parseInt(args[1]);
         switch (n) {
         case 1:
-            LOG.debug("Connexion de l'utilisateur Ã  son calendrier : ");
+            LOG.debug("Connexion de l'utilisateur à  son calendrier : ");
             System.out.println("Tiens toi pret pour ton prochain events  ^^\n" + allEvents);
             break;
 
         case 2:
-            LOG.debug("Connexion de l'utilisateur Ã  son comtpe email : ");
+            LOG.debug("Connexion de l'utilisateur à  son comtpe email : ");
             System.out.println("Vous avez : " + nbemails + " email(s) non lu(s) \n");
             break;
 
         case 3:
-            LOG.debug("Connexion de l'utilisateur Ã  sa classe de label :");
+            LOG.debug("Connexion de l'utilisateur à  sa classe de label :");
             System.out.println(displayLabel);
             break;
 
         case 4:
-            LOG.debug("Affichage de toutes les donnÃ©es de l'utilisateur");
+            LOG.debug("Affichage de toutes les données de l'utilisateur");
             System.out.println("Tiens toi pret pour ton prochain events  ^^\n" + allEvents);
             System.out.println("Vous avez : " + nbemails + " email(s) non lu(s) \n");
             System.out.println("Voici la liste de vos labels" + displayLabel + " message \n");
             break;
 
         default:
-            System.out.println("Vous n'avez rien Ã  afficher !");
+            System.out.println("Vous n'avez rien à  afficher !");
         }
     }
 

@@ -2,7 +2,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
+	<!-- TODO MGW by Djer |Maven| Comme groupe "fr.houseofcode.dap" serait mieux  -->
 	<groupId>fr.houseofcode.dap.server.dma</groupId>
+	<!-- TODO MGW by Djer |Maven| commandLine.mgw serait mieux pour éviter les ambiguitées  -->
 	<artifactId>commandLine.dma</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
@@ -17,4 +20,8 @@
 			<version>2.9.1</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 	</dependencies>
+	
+	
+	<!-- TODO MGW by Djer |Maven| Création d'un JAR éxécutable ?  -->
+	<!-- TODO MGW by Djer |Maven| plugins Pmd/CheckStyle/JavaDoc/Project-info ?  -->
 </project>
